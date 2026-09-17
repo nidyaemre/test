@@ -177,6 +177,7 @@ strong { font-weight: 500; }
 .mobile-nav a { font-family: var(--serif); font-size: clamp(2rem, 8vw, 3rem); line-height: 1.25; border-bottom: var(--hairline); padding: .4rem 0; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 body.nav-open { overflow: hidden; }
+body.nav-open .site-header { color: var(--ink); background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; transform: none; }
 
 /* ── Hero : l'arrivée au scroll ────────────────────────────── */
 .hero { position: relative; height: 100svh; background: #1e1b16; color: var(--cream); }
@@ -190,7 +191,7 @@ body.nav-open { overflow: hidden; }
 .hero__veil {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(30, 27, 22, .28) 0%, rgba(30, 27, 22, 0) 22%),
+    linear-gradient(to bottom, rgba(30, 27, 22, .4) 0%, rgba(30, 27, 22, 0) 26%),
     linear-gradient(to top, rgba(30, 27, 22, .62) 0%, rgba(30, 27, 22, .22) 34%, rgba(30, 27, 22, 0) 62%);
 }
 

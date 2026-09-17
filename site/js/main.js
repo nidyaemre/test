@@ -177,15 +177,22 @@
   function setupHeader() {
     if (!header) return;
     let lastY = window.scrollY;
+    let travelled = 0; // distance cumulée dans la direction courante
+    let direction = 0;
     const heroHeight = () => (hero ? hero.offsetHeight : 0);
     const update = () => {
       const y = window.scrollY;
       const overHero = y < heroHeight() - 80;
       header.classList.toggle("is-over-hero", overHero);
       header.classList.toggle("is-scrolled", !overHero);
-      // Se cache en descendant, réapparaît en remontant (hors hero).
-      const hide = !overHero && y > lastY + 4 && y > 200 && !document.body.classList.contains("nav-open");
-      header.classList.toggle("is-hidden", hide);
+      // Se cache après 40 px de descente, réapparaît après 40 px de remontée (hors hero).
+      const delta = y - lastY;
+      const dir = Math.sign(delta);
+      if (dir !== 0 && dir !== direction) { direction = dir; travelled = 0; }
+      travelled += Math.abs(delta);
+      if (overHero || reduceMotion.matches || document.body.classList.contains("nav-open")) header.classList.remove("is-hidden");
+      else if (direction > 0 && travelled > 40 && y > 200) header.classList.add("is-hidden");
+      else if (direction < 0 && travelled > 40) header.classList.remove("is-hidden");
       lastY = y;
     };
     window.addEventListener("scroll", update, { passive: true });
