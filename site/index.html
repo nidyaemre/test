@@ -96,7 +96,7 @@
           <source srcset="assets/img/facade-closed-720.webp 720w, assets/img/facade-closed-1280.webp 1280w, assets/img/facade-closed-1920.webp 1920w" sizes="100vw" type="image/webp">
           <img src="assets/img/facade-closed-1920.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
         </picture>
-        <video class="hero__video" id="hero-video" muted playsinline preload="metadata" poster="assets/img/facade-closed-1280.webp" data-light-src="assets/video/arrivee-mobile.mp4" aria-label="Plan-séquence : la grille s'ouvre, l'allée d'oliviers, la façade, puis le salon.">
+        <video class="hero__video" id="hero-video" muted playsinline preload="metadata" poster="assets/img/facade-closed-1280.webp" data-light-src="assets/video/arrivee-mobile.mp4">
           <source src="assets/video/arrivee.mp4" type="video/mp4; codecs=&quot;avc1.42E01E&quot;">
           <source src="assets/video/arrivee.webm" type="video/webm; codecs=&quot;vp9&quot;">
         </video>
@@ -130,7 +130,7 @@
           <span class="hero__hint-line"></span>
         </div>
 
-        <div class="hero__progress" role="progressbar" aria-label="Progression de l'arrivée" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="hero__progress" aria-hidden="true">
           <span class="hero__progress-bar"></span>
         </div>
       </div>
@@ -247,7 +247,7 @@
     <!-- ══════════════════════════════ LA TABLE DU MATIN ══════════════════════════════ -->
     <section class="table" id="table" aria-labelledby="table-title">
       <div class="table__bg" aria-hidden="true">
-        <video class="ambient" muted loop playsinline autoplay preload="none" poster="assets/video/cafe-poster.webp" data-ambient>
+        <video class="ambient" muted loop playsinline preload="none" poster="assets/video/cafe-poster.webp" data-ambient>
           <source src="assets/video/cafe.mp4" type="video/mp4; codecs=&quot;avc1.42E01E&quot;">
           <source src="assets/video/cafe.webm" type="video/webm; codecs=&quot;vp9&quot;">
         </video>
@@ -306,7 +306,7 @@
 
       <div class="pool">
         <div class="pool__bg" aria-hidden="true">
-          <video class="ambient" muted loop playsinline autoplay preload="none" poster="assets/video/piscine-poster.webp" data-ambient>
+          <video class="ambient" muted loop playsinline preload="none" poster="assets/video/piscine-poster.webp" data-ambient>
             <source src="assets/video/piscine.mp4" type="video/mp4; codecs=&quot;avc1.42E01E&quot;">
           <source src="assets/video/piscine.webm" type="video/webm; codecs=&quot;vp9&quot;">
           </video>

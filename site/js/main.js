@@ -25,7 +25,6 @@
     if (!hero || !video) return;
 
     const progressBar = $(".hero__progress-bar", hero);
-    const progressEl = $(".hero__progress", hero);
     const steps = $$(".hero__steps li", hero);
     const useScrub = scrubMedia.matches && !reduceMotion.matches;
 
@@ -67,7 +66,6 @@
 
     const setProgress = (p) => {
       progressBar.style.transform = `scaleX(${p})`;
-      progressEl.setAttribute("aria-valuenow", Math.round(p * 100));
       let active = 0;
       for (let i = 0; i < 4; i++) if (p >= stageBounds[i]) active = i;
       steps.forEach((li, i) => {
@@ -247,10 +245,7 @@
   function setupAmbient() {
     const videos = $$("video[data-ambient]");
     if (!videos.length) return;
-    if (reduceMotion.matches) {
-      videos.forEach((v) => { v.removeAttribute("autoplay"); v.pause(); });
-      return;
-    }
+    if (reduceMotion.matches) return; // on garde les affiches fixes
     const io = new IntersectionObserver((entries) => {
       entries.forEach(({ target: v, isIntersecting }) => {
         if (isIntersecting) {

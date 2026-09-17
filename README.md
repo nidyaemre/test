@@ -44,6 +44,11 @@ avec un message pré-rempli (`mailto:`). Pour brancher un service de formulaires
 (Netlify Forms, Formspree, Basin…), remplacer le bloc `setupForm` de `js/main.js`
 et l'attribut `action` du formulaire.
 
+## Nom de domaine
+
+Les balises `canonical`, `og:url` et `og:image` pointent vers `https://bastide-aurane.fr/`,
+domaine fictif : à remplacer par le domaine réel au moment du déploiement.
+
 ## Poids
 
 Le site complet pèse moins de 25 Mo et aucun fichier ne dépasse 8 Mo
