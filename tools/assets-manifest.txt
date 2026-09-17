@@ -1,0 +1,10 @@
+# <destination path> <source url>
+build/src/facade.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081107_8c54bc9b-d49d-4b51-961e-8061faefbcab.png
+build/src/suite-lin.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_039d155c-6391-4855-97d1-dc584caf6349.png
+build/src/suite-pierre.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_5160cb45-2488-451c-a635-191c4bd1765e.png
+build/src/suite-olivier.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081839_0e0bc327-ac17-48d6-a4d5-2b75f80179fe.png
+build/src/suite-ocre.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_ef3420e0-efe5-40f9-ad57-9e13ff94e04c.png
+build/src/suite-ciel.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_b90a94ca-becb-4410-8b2c-67236e9180d6.png
+build/src/table.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_37276a82-a785-4bad-8b0a-adc830ce65b2.png
+build/src/environs.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_06cdc264-f35e-4e02-9a8f-d34f06901d8d.png
+build/src/piscine.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_081838_1e3e249c-1487-4143-a405-f95e272ed722.png
