@@ -16,6 +16,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 # name -> (source file, list of target widths)
 PLAN = {
     "facade": ("facade.png", [1920, 1280, 720]),
+    "facade-closed": ("facade-closed.png", [1920, 1280, 720]),
     "suite-lin": ("suite-lin.png", [1200, 720]),
     "suite-pierre": ("suite-pierre.png", [1200, 720]),
     "suite-olivier": ("suite-olivier.png", [1200, 720]),

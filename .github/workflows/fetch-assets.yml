@@ -18,6 +18,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: fetch-assets-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -41,5 +45,6 @@ jobs:
             echo "Nothing new to commit"
           else
             git commit -m "chore(assets): add generated media from manifest"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
             git push
           fi
