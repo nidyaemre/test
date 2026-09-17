@@ -11,3 +11,4 @@ build/src/piscine.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwg
 build/src/facade-closed.png https://d8j0ntlcm91z4.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/hf_20260917_082305_3ba129ea-73c9-4a48-b7c3-f8d00049847a.png
 # bundles (zip archives unpacked into site/assets by the workflow)
 build/bundle-a.zip https://d2ol7oe51mr4n9.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/32ed0911-babd-4239-a060-ff50a706a47e.zip
+build/bundle-b.zip https://d2ol7oe51mr4n9.cloudfront.net/user_35iQSW29esBcPJwgY6U0Q7TgLaK/3829d805-c42f-4c68-a425-2124edcea3fc.zip
