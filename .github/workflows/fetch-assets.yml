@@ -1,6 +1,9 @@
 name: Fetch generated assets
 
 on:
+  push:
+    branches: ["claude/**"]
+    paths: ["tools/assets-manifest.txt", "tools/build-images.py", ".github/workflows/fetch-assets.yml"]
   workflow_dispatch:
     inputs:
       manifest:
@@ -23,9 +26,9 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - name: Download assets listed in the manifest
-        run: bash tools/fetch-assets.sh "${{ github.event.inputs.manifest }}"
+        run: bash tools/fetch-assets.sh "${{ github.event.inputs.manifest || 'tools/assets-manifest.txt' }}"
       - name: Build optimised images
-        if: ${{ github.event.inputs.build_images == 'true' }}
+        if: ${{ github.event.inputs.build_images != 'false' }}
         run: |
           python3 -m pip install --quiet pillow
           python3 tools/build-images.py
