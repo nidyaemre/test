@@ -31,6 +31,14 @@ jobs:
           ref: ${{ github.ref }}
       - name: Download assets listed in the manifest
         run: bash tools/fetch-assets.sh "${{ github.event.inputs.manifest || 'tools/assets-manifest.txt' }}"
+      - name: Unpack asset bundles (videos, fonts)
+        run: |
+          shopt -s nullglob
+          for z in build/*.zip; do
+            echo "unzip $z"
+            unzip -o -q "$z" -d site/assets
+          done
+          ls -laR site/assets | head -80
       - name: Build optimised images
         if: ${{ github.event.inputs.build_images != 'false' }}
         run: |

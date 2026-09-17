@@ -26,10 +26,10 @@
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f3eee4'/%3E%3Cpath d='M32 12c-9 8-13 15-13 24a13 13 0 0 0 26 0c0-9-4-16-13-24z' fill='none' stroke='%236b6f4e' stroke-width='3'/%3E%3Cpath d='M32 20v30' stroke='%236b6f4e' stroke-width='2.5'/%3E%3C/svg%3E">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap">
-  <link rel="preload" as="image" href="assets/img/facade-1920.webp" imagesrcset="assets/img/facade-720.webp 720w, assets/img/facade-1280.webp 1280w, assets/img/facade-1920.webp 1920w" imagesizes="100vw">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-300.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/instrument-sans-400.woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="preload" as="image" href="assets/img/facade-closed-1920.webp" imagesrcset="assets/img/facade-closed-720.webp 720w, assets/img/facade-closed-1280.webp 1280w, assets/img/facade-closed-1920.webp 1920w" imagesizes="100vw">
   <link rel="stylesheet" href="css/styles.css">
 
   <script type="application/ld+json">
@@ -93,10 +93,10 @@
     <section class="hero" id="arrivee" aria-label="L'arrivée à la bastide">
       <div class="hero__sticky">
         <picture class="hero__poster" aria-hidden="true">
-          <source srcset="assets/img/facade-720.webp 720w, assets/img/facade-1280.webp 1280w, assets/img/facade-1920.webp 1920w" sizes="100vw" type="image/webp">
-          <img src="assets/img/facade-1920.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+          <source srcset="assets/img/facade-closed-720.webp 720w, assets/img/facade-closed-1280.webp 1280w, assets/img/facade-closed-1920.webp 1920w" sizes="100vw" type="image/webp">
+          <img src="assets/img/facade-closed-1920.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
         </picture>
-        <video class="hero__video" id="hero-video" muted playsinline preload="metadata" poster="assets/img/facade-1280.webp" aria-label="Plan-séquence : la grille s'ouvre, l'allée d'oliviers, la façade, puis le salon.">
+        <video class="hero__video" id="hero-video" muted playsinline preload="metadata" poster="assets/img/facade-closed-1280.webp" aria-label="Plan-séquence : la grille s'ouvre, l'allée d'oliviers, la façade, puis le salon.">
           <source src="assets/video/arrivee.mp4" type="video/mp4">
         </video>
         <div class="hero__veil" aria-hidden="true"></div>
@@ -109,6 +109,13 @@
           </h1>
           <p class="hero__lead reveal-line">Cinq suites, une oliveraie, une piscine taillée dans la roche. La Bastide Aurane ouvre ses portes en juin ; les réservations sont ouvertes.</p>
         </div>
+
+        <div class="hero__end">
+          <p>Vous êtes entré. Le reste de la maison se visite plus bas.</p>
+          <a class="btn btn--ghost" href="#suites">Découvrir les suites</a>
+        </div>
+
+        <p class="hero__loading" aria-hidden="true">Chargement</p>
 
         <ol class="hero__steps" aria-hidden="true">
           <li data-step="0"><span>01</span> La grille</li>
@@ -153,8 +160,8 @@
           <p class="section-head__lead">Chaque suite porte le nom de ce qui la définit. Toutes ont une salle de bain en pierre, du linge de lin lavé et une vue sur les oliviers ou la vallée. Petit-déjeuner compris.</p>
         </header>
 
-        <ul class="suite-grid">
-          <li class="suite reveal" data-suite="Le Lin">
+        <div class="suite-grid">
+          <article class="suite" data-suite="Le Lin">
             <a class="suite__media" href="#reservation" data-reserve="Le Lin" aria-label="Demander la réservation de la suite Le Lin">
               <img src="assets/img/suite-lin-1200.webp" srcset="assets/img/suite-lin-720.webp 720w, assets/img/suite-lin-1200.webp 1200w" sizes="(min-width: 1000px) 33vw, (min-width: 700px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="La suite Le Lin : lit en lin naturel sous des poutres anciennes, fenêtre ouverte sur les oliviers.">
             </a>
@@ -167,9 +174,9 @@
               <p class="suite__desc">La plus simple, la plus douce. Des murs de chaux, une fenêtre profonde, un lit que l'on a voulu bas pour ne voir que les arbres.</p>
               <a class="link-arrow" href="#reservation" data-reserve="Le Lin">Demander la réservation</a>
             </div>
-          </li>
+          </article>
 
-          <li class="suite reveal" data-suite="La Pierre">
+          <article class="suite" data-suite="La Pierre">
             <a class="suite__media" href="#reservation" data-reserve="La Pierre" aria-label="Demander la réservation de la suite La Pierre">
               <img src="assets/img/suite-pierre-1200.webp" srcset="assets/img/suite-pierre-720.webp 720w, assets/img/suite-pierre-1200.webp 1200w" sizes="(min-width: 1000px) 33vw, (min-width: 700px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="La suite La Pierre : baignoire en travertin devant un mur de pierre apparente sous une voûte.">
             </a>
@@ -182,9 +189,9 @@
               <p class="suite__desc">Sous l'ancienne voûte, une baignoire taillée dans un seul bloc. La lumière de fin d'après-midi y entre de biais et reste longtemps.</p>
               <a class="link-arrow" href="#reservation" data-reserve="La Pierre">Demander la réservation</a>
             </div>
-          </li>
+          </article>
 
-          <li class="suite reveal" data-suite="L'Olivier">
+          <article class="suite" data-suite="L'Olivier">
             <a class="suite__media" href="#reservation" data-reserve="L'Olivier" aria-label="Demander la réservation de la suite L'Olivier">
               <img src="assets/img/suite-olivier-1200.webp" srcset="assets/img/suite-olivier-720.webp 720w, assets/img/suite-olivier-1200.webp 1200w" sizes="(min-width: 1000px) 33vw, (min-width: 700px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="La suite L'Olivier : portes-fenêtres ouvertes sur une terrasse privée ombragée par un olivier centenaire.">
             </a>
@@ -197,9 +204,9 @@
               <p class="suite__desc">On ouvre les deux portes et la chambre continue dehors, sous un olivier plus vieux que la maison. Deux chaises, un muret, le silence.</p>
               <a class="link-arrow" href="#reservation" data-reserve="L'Olivier">Demander la réservation</a>
             </div>
-          </li>
+          </article>
 
-          <li class="suite reveal" data-suite="L'Ocre">
+          <article class="suite" data-suite="L'Ocre">
             <a class="suite__media" href="#reservation" data-reserve="L'Ocre" aria-label="Demander la réservation de la suite L'Ocre">
               <img src="assets/img/suite-ocre-1200.webp" srcset="assets/img/suite-ocre-720.webp 720w, assets/img/suite-ocre-1200.webp 1200w" sizes="(min-width: 1000px) 33vw, (min-width: 700px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="La suite L'Ocre : murs à la chaux ocre, cheminée de pierre et lit en lin terre cuite.">
             </a>
@@ -212,9 +219,9 @@
               <p class="suite__desc">Les pigments viennent de Roussillon, à vingt minutes. C'est la suite d'hiver comme d'été : un feu, une table pour écrire, des volets bleus.</p>
               <a class="link-arrow" href="#reservation" data-reserve="L'Ocre">Demander la réservation</a>
             </div>
-          </li>
+          </article>
 
-          <li class="suite suite--wide reveal" data-suite="Le Ciel">
+          <article class="suite" data-suite="Le Ciel">
             <a class="suite__media" href="#reservation" data-reserve="Le Ciel" aria-label="Demander la réservation de la suite Le Ciel">
               <img src="assets/img/suite-ciel-1200.webp" srcset="assets/img/suite-ciel-720.webp 720w, assets/img/suite-ciel-1200.webp 1200w" sizes="(min-width: 1000px) 40vw, (min-width: 700px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="La suite Le Ciel : lit à baldaquin en chêne clair, fenêtre panoramique sur la vallée au coucher du soleil.">
             </a>
@@ -227,10 +234,12 @@
               <p class="suite__desc">Tout en haut, sous la charpente blanchie. La vallée entière tient dans la fenêtre, et la terrasse regarde le soleil finir sa course derrière les Monts de Vaucluse.</p>
               <a class="link-arrow" href="#reservation" data-reserve="Le Ciel">Demander la réservation</a>
             </div>
-          </li>
-        </ul>
-
-        <p class="suites__note reveal">Tarifs par nuit pour deux personnes, petit-déjeuner et taxe de séjour compris. Séjour minimum de deux nuits le week-end.</p>
+          </article>
+          <aside class="suite-grid__aside reveal">
+            <p>Le luxe, ici, c'est ce que l'on a retiré.</p>
+            <small>Tarifs par nuit pour deux personnes, petit-déjeuner et taxe de séjour compris. Séjour minimum de deux nuits le week-end.</small>
+          </aside>
+        </div>
       </div>
     </section>
 
