@@ -29,8 +29,17 @@
     const steps = $$(".hero__steps li", hero);
     const useScrub = scrubMedia.matches && !reduceMotion.matches;
 
+    // Première source que le navigateur sait lire (mp4/H.264 d'abord, WebM sinon).
+    const canPlayMp4 = video.canPlayType('video/mp4; codecs="avc1.42E01E"') !== "";
+    const sources = $$("source", video).map((el) => ({ src: el.src, type: el.type }));
+    const playable = sources.find((s) => video.canPlayType(s.type) !== "") || sources[0];
+
     if (!useScrub) {
-      // Mobile, tablette, ou mouvement réduit : lecture simple, en boucle douce.
+      // Mobile, tablette, ou mouvement réduit : lecture simple, en boucle douce,
+      // avec la version plus légère (GOP long) de la même vidéo quand H.264 est lu.
+      const light = video.getAttribute("data-light-src");
+      if (light && canPlayMp4) { video.innerHTML = ""; video.src = light; }
+      else if (playable) { video.innerHTML = ""; video.src = playable.src; }
       video.loop = true;
       video.autoplay = true;
       video.preload = "auto";
@@ -46,7 +55,7 @@
     video.loop = false;
 
     // Bornes de temps des quatre étapes (fraction de la durée totale).
-    const stageBounds = [0, 0.22, 0.53, 0.75, 1];
+    const stageBounds = [0, 0.26, 0.54, 0.78, 1];
     let duration = 0;
     let target = 0;
     let current = 0;
@@ -54,6 +63,7 @@
     let rafId = 0;
     let seeking = false;
     let pending = false;
+    let seekGuard = 0;
 
     const setProgress = (p) => {
       progressBar.style.transform = `scaleX(${p})`;
@@ -65,7 +75,8 @@
         li.classList.toggle("is-done", i < active);
       });
       hero.classList.toggle("is-scrubbing", p > 0.015);
-      hero.classList.toggle("is-inside", p > 0.86);
+      hero.classList.toggle("is-entering", p > 0.1);
+      hero.classList.toggle("is-inside", p > 0.9);
     };
 
     const measure = () => {
@@ -78,13 +89,18 @@
 
     const seekTo = (t) => {
       if (!ready) return;
+      if (Math.abs(video.currentTime - t) < 0.012) return; // déjà sur cette image
       if (seeking) { pending = true; return; }
       seeking = true;
+      // Si « seeked » n'arrive pas (saut nul, décodeur lent), on libère quand même.
+      clearTimeout(seekGuard);
+      seekGuard = setTimeout(() => { seeking = false; }, 160);
       // fastSeek est plus fluide sur Safari ; currentTime ailleurs.
       if ("fastSeek" in video && Math.abs(video.currentTime - t) > 0.5) video.fastSeek(t);
       else video.currentTime = t;
     };
     video.addEventListener("seeked", () => {
+      clearTimeout(seekGuard);
       seeking = false;
       if (pending) { pending = false; seekTo(current * duration); }
     });
@@ -118,7 +134,8 @@
 
     // On charge le fichier entier en mémoire : les sauts dans la vidéo
     // deviennent instantanés, quelle que soit la vitesse de la molette.
-    const src = video.currentSrc || $("source", video)?.src;
+    const src = playable ? playable.src : video.currentSrc;
+    const mime = playable ? playable.type : "video/mp4";
     const loadingEl = $(".hero__loading", hero);
     fetch(src)
       .then((r) => {
@@ -128,7 +145,7 @@
         const chunks = [];
         let received = 0;
         const pump = () => reader.read().then(({ done, value }) => {
-          if (done) return new Blob(chunks, { type: "video/mp4" });
+          if (done) return new Blob(chunks, { type: mime });
           chunks.push(value);
           received += value.length;
           if (total && loadingEl) loadingEl.textContent = `Chargement ${Math.round((received / total) * 100)} %`;
@@ -142,6 +159,7 @@
       })
       .catch(() => {
         // Repli : on laisse le navigateur gérer le flux.
+        if (playable) { video.innerHTML = ""; video.src = playable.src; }
         video.preload = "auto";
         video.load();
       });

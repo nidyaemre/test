@@ -227,7 +227,7 @@ body.nav-open { overflow: hidden; }
 .hero__hint {
   display: none;
   position: absolute; left: 50%; bottom: 1.6rem; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: .7rem;
+  flex-direction: column; align-items: center; gap: .7rem;
   font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; opacity: .8;
   transition: opacity .6s;
 }
@@ -247,8 +247,8 @@ body.nav-open { overflow: hidden; }
   .hero.is-scrub .hero__steps, .hero.is-scrub .hero__progress { display: flex; }
   .hero.is-scrub .hero__progress { display: block; }
   .hero.is-scrub .hero__hint { display: flex; }
-  .hero.is-scrub .hero__content { transition: opacity .5s, transform .8s var(--ease-out); }
-  .hero.is-scrub.is-inside .hero__content { opacity: 0; transform: translateY(-12px); pointer-events: none; }
+  .hero.is-scrub .hero__content { transition: opacity .7s var(--ease-soft), transform 1s var(--ease-out); }
+  .hero.is-scrub.is-entering .hero__content { opacity: 0; transform: translateY(-16px); pointer-events: none; }
   .hero.is-scrub .hero__end {
     position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(5rem, 12vh, 8rem);
     opacity: 0; transform: translateY(14px); transition: opacity .7s var(--ease-soft), transform .9s var(--ease-out);
