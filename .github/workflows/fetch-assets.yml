@@ -38,6 +38,9 @@ jobs:
             echo "unzip $z"
             unzip -o -q "$z" -d site/assets
           done
+          # fonts.css lives in site/css; review material never ships with the site
+          rm -f site/assets/fonts/fonts.css
+          if [ -d site/assets/review ]; then mkdir -p build && rm -rf build/review && mv site/assets/review build/review; fi
           ls -laR site/assets | head -80
       - name: Build optimised images
         if: ${{ github.event.inputs.build_images != 'false' }}
