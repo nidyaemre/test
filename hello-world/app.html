@@ -1,0 +1,129 @@
+<title>Hello World</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap">
+<style>
+  /* Layout: one-screen phone app, greeting centred, single tap target at the bottom */
+  :root {
+    --bg: #eef1f6;
+    --fg: #12161f;
+    --muted: #5a6275;
+    --accent: #2b4bea;
+    --on-accent: #ffffff;
+    --font-display: "Space Grotesk", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1220; --fg: #e8ecf6; --muted: #98a1b8; --accent: #8da2ff; --on-accent: #0e1220;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1220; --fg: #e8ecf6; --muted: #98a1b8; --accent: #8da2ff; --on-accent: #0e1220;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+  main {
+    flex: 1;
+    display: grid;
+    place-content: center;
+    gap: 12px;
+    text-align: center;
+    min-width: 0;
+  }
+  .lang {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 0;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.75rem, 14vw, 5.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h1 .dot { color: var(--accent); }
+  .count {
+    margin: 0;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  button {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.125rem;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    cursor: pointer;
+  }
+  button:active { transform: scale(0.98); }
+  button:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+  @media (prefers-reduced-motion: no-preference) {
+    h1.swap { animation: pop 0.28s ease-out; }
+    @keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<main>
+  <p class="lang" id="lang">English</p>
+  <h1 id="greet">Hello World<span class="dot">.</span></h1>
+  <p class="count" id="count">Touchez le bouton pour changer de langue</p>
+</main>
+<button id="next" type="button">Dire bonjour autrement</button>
+
+<script>
+  const greetings = [
+    ["English", "Hello World"],
+    ["Français", "Bonjour le monde"],
+    ["Español", "Hola Mundo"],
+    ["Deutsch", "Hallo Welt"],
+    ["Italiano", "Ciao mondo"],
+    ["Português", "Olá Mundo"],
+    ["Türkçe", "Merhaba Dünya"],
+    ["Nederlands", "Hallo wereld"],
+    ["日本語", "こんにちは世界"],
+    ["العربية", "مرحبا بالعالم"]
+  ];
+  let i = 0, taps = 0;
+  const greet = document.getElementById("greet");
+  const lang = document.getElementById("lang");
+  const count = document.getElementById("count");
+  document.getElementById("next").addEventListener("click", () => {
+    i = (i + 1) % greetings.length;
+    taps++;
+    lang.textContent = greetings[i][0];
+    greet.innerHTML = "";
+    greet.append(greetings[i][1]);
+    const dot = document.createElement("span");
+    dot.className = "dot"; dot.textContent = ".";
+    greet.append(dot);
+    greet.dir = greetings[i][0] === "العربية" ? "rtl" : "ltr";
+    greet.classList.remove("swap"); void greet.offsetWidth; greet.classList.add("swap");
+    count.textContent = taps + (taps > 1 ? " bonjours" : " bonjour");
+  });
+</script>
